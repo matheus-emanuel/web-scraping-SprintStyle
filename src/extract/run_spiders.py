@@ -1,5 +1,6 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
+from multiprocessing import Process
 
 def run_spider(spider_name, output_file):
     settings = get_project_settings()
@@ -8,13 +9,21 @@ def run_spider(spider_name, output_file):
     process = CrawlerProcess(settings)
     process.crawl(spider_name)
     process.start()
+    
 
 if __name__ == "__main__":
     spiders = {
         "mercado_livre": "../data/data_mercado_livre.json",
-        # "americanas": "../data/data_americanas.json",
+        "centauro": "../data/data_centauro.json",
         # "amazon": "../data/data_amazon.json",
     }
+  
+    processes = []
 
     for spider, output in spiders.items():
-        run_spider(spider, output)
+        p = Process(target=run_spider, args=(spider, output))
+        p.start()
+        processes.append(p)
+
+    for p in processes:
+        p.join()

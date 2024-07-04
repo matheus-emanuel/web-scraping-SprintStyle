@@ -11,8 +11,8 @@ __pycache__/
 *.so
 
 # Arquivos gerados pelo Scrapy (JSON, CSV, etc.)
-/data/*.json
-/data/*.csv
+src/data/*.json
+src/data/*.csv
 
 # Distribution / packaging
 .Python
