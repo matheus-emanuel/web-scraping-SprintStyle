@@ -7,11 +7,12 @@ class CentauroSpider(scrapy.Spider):
     allowed_domains = ["www.centauro.com.br"]
     start_urls = ["https://www.centauro.com.br/nav/categorias/calcados/produto/tenis/genero/masculino"]
     next_page = 2
-    max_page = 10
+    max_page = 3
     
     def __init__(self, *args, **kwargs):
         super(CentauroSpider, self).__init__(*args, **kwargs)
         self.feed_uri = kwargs.get('feed_uri')
+
 
     def get_brand(self, brand_list: list, item_name: str):
         """
@@ -35,7 +36,6 @@ class CentauroSpider(scrapy.Spider):
                 return brand
         return None
 
-            
 
 
     def parse(self, response):
@@ -47,17 +47,22 @@ class CentauroSpider(scrapy.Spider):
 
         for product in products:
             name = product.css('p.Typographystyled__Paragraph-sc-bdxvrr-1.knvuZc.ProductCard-styled__Title-sc-97c94e5e-3.hzAjfq::text').get()
+
             yield{
                 'nome': name,
                 'brand': self.get_brand(brand_list=brand_list, item_name=name),
                 'new_price': product.css('p.Typographystyled__Paragraph-sc-bdxvrr-1.eFDcLB.Price-styled__CurrentPrice-sc-e083f0ed-4.etKnUk::text').get(),
-                'old_price': product.css('del.Typographystyled__Offer-sc-bdxvrr-4.cAyLkZ.Price-styled__OldPriceOffer-sc-e083f0ed-2.gaskFI::text').get()
+                'old_price': product.css('del.Typographystyled__Offer-sc-bdxvrr-4.cAyLkZ.Price-styled__OldPriceOffer-sc-e083f0ed-2.gaskFI::text').get(),
+                'rating_number': None,
+                'reviews_amount': None
             }
 
         if self.next_page < self.max_page:
             if next_page:
                 self.next_page += 1
                 yield scrapy.Request(url=next_page, callback=self.parse)
+
+
         
 
 
