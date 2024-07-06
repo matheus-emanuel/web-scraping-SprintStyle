@@ -13,8 +13,8 @@ def run_spider(spider_name, output_file):
 
 if __name__ == "__main__":
     spiders = {
-        "mercado_livre": "../data/data_mercado_livre.json",
-        "centauro": "../data/data_centauro.json",
+        "mercado_livre": "../../data/data_mercado_livre.json",
+        "centauro": "../../data/data_centauro.json",
         # "amazon": "../data/data_amazon.json",
     }
   
