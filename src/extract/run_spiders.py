@@ -15,7 +15,7 @@ if __name__ == "__main__":
     spiders = {
         "mercado_livre": "../../data/data_mercado_livre.json",
         "centauro": "../../data/data_centauro.json",
-        # "amazon": "../data/data_amazon.json",
+        "netshoes": "../../data/data_netshoes.json",
     }
   
     processes = []

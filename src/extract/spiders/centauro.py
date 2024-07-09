@@ -7,7 +7,7 @@ class CentauroSpider(scrapy.Spider):
     allowed_domains = ["www.centauro.com.br"]
     start_urls = ["https://www.centauro.com.br/nav/categorias/calcados/produto/tenis/genero/masculino"]
     next_page = 2
-    max_page = 3
+    max_page = 10
     
     def __init__(self, *args, **kwargs):
         super(CentauroSpider, self).__init__(*args, **kwargs)
