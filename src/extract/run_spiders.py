@@ -13,9 +13,9 @@ def run_spider(spider_name, output_file):
 
 if __name__ == "__main__":
     spiders = {
-        "mercado_livre": "../../data/data_mercado_livre.json",
-        "centauro": "../../data/data_centauro.json",
-        "netshoes": "../../data/data_netshoes.json",
+        "mercado_livre": "../../data/raw_data/data_mercado_livre.json",
+        "centauro": "../../data/raw_data/data_centauro.json",
+        "netshoes": "../../data/raw_data/data_netshoes.json",
     }
   
     processes = []
